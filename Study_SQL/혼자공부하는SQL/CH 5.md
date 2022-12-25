@@ -116,4 +116,74 @@
 
 ## **Virtual Table : View**
 
-* 
+* **Create View**
+  * 데이터 베이스에 보안을 위해 사용 됨(접근 권한 제한)
+  
+  * Code
+  ```sql
+      CREATE VIEW v_viewtest1
+    AS
+    	SELECT 
+        B.mem_id `MEMBER ID`, M.mem_name `MEMBER NAME`, 
+        B.prod_name `Product Name`, 
+        CONCAT(M.phone1, M.phone2)  `Office Phone`
+    		FROM buy B
+    			INNER JOIN member M
+                ON B.mem_id = M.mem_id;
+    
+    SELECT DISTINCT `MEMBER ID`, `MEMBER NAME` 
+            FROM v_viewtest1;
+  ```
+
+* **Alter View**
+  * Code
+  ```sql
+  ALTER VIEW v_viewtest1
+    AS
+    	SELECT 
+        B.mem_id `회원 아이디`, M.mem_name `회원 이름`, 
+        B.prod_name `제품 이름`, 
+        CONCAT(M.phone1, M.phone2)  `연락처`
+    		FROM buy B
+    			INNER JOIN member M
+                ON B.mem_id = M.mem_id;
+    
+    SELECT DISTINCT `회원 아이디`, `회원 이름` 
+            FROM v_viewtest1;
+  ```
+
+* **Drop View**
+  * Code
+  ```sql
+  DESCRIBE v_viewtest1; -- Check View info
+  SHOW CREATE VIEW v_viewtest1; -- Check View src code
+  
+  DROP VIEW v_viewtest1;
+  ```
+
+* **Data via Views**
+  ```sql
+  -- UPDATE -- 
+  UPDATE v_member SET addr = '부산' WHERE mem_id = 'BLK';  
+
+  -- INSERT --
+  INSERT INTO v_member(mem_id, mem_name, addr) 
+  VALUES ('BTS', '방탄소년단', '경기')
+  
+  -- In Condition --
+  CREATE VIEW v_heights167
+  AS
+        SELECT * FROM member WHERE height >= 167;
+        WITH CHECK OPTION -- 위의 조건 외에 값은 받지 않음
+  SELECT * FROM v_heights167;
+
+  -- Check View Status --
+  CHECK TABLE v_heights167;
+
+  ```
+  * 관련 뷰가 있더라도 테이블은 삭제 될 수 있음   
+
+<br>
+
+* **단순 뷰 / 복합 뷰** : 하나의 테이블로 만든 뷰/ 두 개이상 ""
+
