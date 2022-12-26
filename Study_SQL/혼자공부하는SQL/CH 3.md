@@ -36,7 +36,7 @@
 >column2 CHAR(4)
 >)
 >ALTER TABLE test_table AUTO_INCREMENT = 100; --start from 100
->SET @@auto_increment=3; -- get bigger by 3
+>SET @auto_increment=3; -- get bigger by 3
 >
 > -- 한번에 INSERT 하기
 >-- INSERT INTO table_name (column1, column2 ...)

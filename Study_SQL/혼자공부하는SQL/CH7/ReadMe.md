@@ -97,9 +97,4 @@ CALL dynamic_proc('member');
 
 <br>
 
-## **Stored Functions and Cursors**
 
-* **Stored Function**
-
-```sql
-```
