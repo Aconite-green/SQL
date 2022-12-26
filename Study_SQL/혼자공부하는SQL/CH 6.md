@@ -82,6 +82,11 @@ CREATE UNIQUE INDEX idx_member_mem_number
 
 -- 인덱스 제거
 DROP INDEX idx_member_addr ON member;
+
+-- 외래 키 확인
+SELECT table_name, constraint_name
+    FROM information_schema.referential_constraints
+    WHERE constraint_schema = 'market_db'; 
 ```
 * 인덱스가 있어도 MySQL 인 판단하여 사용하지 않을 수 있음
 
