@@ -1,1 +1,2 @@
-# SQLstudy
+# SQLstud
+In japan
